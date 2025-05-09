@@ -76,7 +76,7 @@ import { TaskService } from '../../services/task.service';
             <mat-form-field appearance="outline">
               <mat-label>Status</mat-label>
               <mat-select formControlName="status">
-                <mat-option value="todo">To Do</mat-option>
+                <mat-option value="pending">Pending</mat-option>
                 <mat-option value="in-progress">In Progress</mat-option>
                 <mat-option value="completed">Completed</mat-option>
               </mat-select>
@@ -183,7 +183,7 @@ export class TaskDialogComponent implements OnInit {
       title: ['', Validators.required],
       description: [''],
       assignedTo: ['', Validators.required],
-      status: ['todo'],
+      status: ['pending'],
       priority: ['medium'],
       dueDate: [new Date(), Validators.required]
     });

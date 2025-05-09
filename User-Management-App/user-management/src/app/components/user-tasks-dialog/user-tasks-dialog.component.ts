@@ -264,6 +264,36 @@ interface DialogData {
         gap: 8px;
       }
     }
+
+    ::ng-deep {
+      .mat-mdc-chip {
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-success {
+        background-color: green !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-warn {
+        background-color: red !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-primary {
+        background-color: purple !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-accent {
+        background-color: purple !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip .mdc-evolution-chip__text-label {
+        color: white !important;
+      }
+    }
   `]
 })
 export class UserTasksDialogComponent {
@@ -281,20 +311,28 @@ export class UserTasksDialogComponent {
   }
 
   getStatusColor(status: string): string {
-    switch (status) {
-      case 'todo': return 'warn';
-      case 'in-progress': return 'accent';
-      case 'completed': return 'primary';
-      default: return 'primary';
+    switch (status.toLowerCase()) {
+      case 'completed':
+        return 'success';  // Will be green
+      case 'in-progress':
+        return 'accent';   // Will be purple
+      case 'pending':
+        return 'warn';     // Will be red
+      default:
+        return 'default';
     }
   }
 
   getPriorityColor(priority: string): string {
     switch (priority) {
-      case 'low': return 'primary';
-      case 'medium': return 'accent';
-      case 'high': return 'warn';
-      default: return 'primary';
+      case 'high':
+        return 'warn';     // Will be red
+      case 'medium':
+        return 'accent';   // Will be purple
+      case 'low':
+        return 'success';  // Will be green
+      default:
+        return 'default';
     }
   }
 

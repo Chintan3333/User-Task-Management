@@ -71,18 +71,22 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
           <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef>Status</th>
             <td mat-cell *matCellDef="let task">
-              <mat-chip [color]="getStatusColor(task.status)" selected>
-                <span class="chip-label">{{task.status}}</span>
-              </mat-chip>
+              <div class="chip-container">
+                <mat-chip [color]="getStatusColor(task.status)" selected>
+                  <span class="chip-text">{{task.status}}</span>
+                </mat-chip>
+              </div>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="priority">
             <th mat-header-cell *matHeaderCellDef>Priority</th>
             <td mat-cell *matCellDef="let task">
-              <mat-chip [color]="getPriorityColor(task.priority)" selected>
-                <span class="chip-label">{{task.priority}}</span>
-              </mat-chip>
+              <div class="chip-container">
+                <mat-chip [color]="getPriorityColor(task.priority)" selected>
+                  <span class="chip-text">{{task.priority}}</span>
+                </mat-chip>
+              </div>
             </td>
           </ng-container>
 
@@ -266,15 +270,44 @@ import { TaskDialogComponent } from '../task-dialog/task-dialog.component';
       }
     }
 
-    .chip-label {
-      text-transform: capitalize;
-      font-weight: 500;
+    .chip-container {
+      display: inline-block;
     }
 
-    .mat-mdc-chip {
-      --mdc-chip-container-height: 32px;
-      --mdc-chip-label-padding-start: 12px;
-      --mdc-chip-label-padding-end: 12px;
+    .chip-text {
+      text-transform: capitalize;
+      font-weight: 500;
+      color: white !important;
+    }
+
+    ::ng-deep {
+      .mat-mdc-chip {
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-success {
+        background-color: green !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-warn {
+        background-color: red !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-primary {
+        background-color: purple !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip.mat-accent {
+        background-color: purple !important;
+        color: white !important;
+      }
+
+      .mat-mdc-chip .mdc-evolution-chip__text-label {
+        color: white !important;
+      }
     }
   `]
 })
@@ -312,11 +345,11 @@ export class TaskListComponent implements OnInit {
   }
 
   getStatusColor(status: string): string {
-    switch (status) {
+    switch (status.toLowerCase()) {
       case 'completed':
         return 'success';
       case 'in-progress':
-        return 'primary';
+        return 'accent';
       case 'pending':
         return 'warn';
       default:
@@ -331,7 +364,7 @@ export class TaskListComponent implements OnInit {
       case 'medium':
         return 'accent';
       case 'low':
-        return 'primary';
+        return 'success';
       default:
         return 'default';
     }

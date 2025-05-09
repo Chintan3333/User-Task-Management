@@ -8,25 +8,33 @@ html, body {
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-/* Custom Material Theme Colors */
+/* Material Theme Colors */
+:root {
+  --success-color: #4caf50;
+  --warn-color: #f44336;
+  --primary-color: #3f51b5;
+  --accent-color: #9c27b0;
+}
+
+/* Material Chip Colors */
 .mat-mdc-chip.mat-success {
-  --mdc-chip-elevated-container-color: #4caf50 !important;
-  --mdc-chip-label-text-color: white !important;
+  background-color: var(--success-color) !important;
+  color: white !important;
 }
 
 .mat-mdc-chip.mat-warn {
-  --mdc-chip-elevated-container-color: #f44336 !important;
-  --mdc-chip-label-text-color: white !important;
+  background-color: var(--warn-color) !important;
+  color: white !important;
 }
 
 .mat-mdc-chip.mat-primary {
-  --mdc-chip-elevated-container-color: #3f51b5 !important;
-  --mdc-chip-label-text-color: white !important;
+  background-color: var(--primary-color) !important;
+  color: white !important;
 }
 
 .mat-mdc-chip.mat-accent {
-  --mdc-chip-elevated-container-color: #9c27b0 !important;
-  --mdc-chip-label-text-color: white !important;
+  background-color: var(--accent-color) !important;
+  color: white !important;
 }
 
 /* Custom scrollbar */
@@ -135,11 +143,18 @@ html, body {
   min-height: 32px !important;
   transition: all 0.2s ease-in-out !important;
   text-transform: capitalize !important;
+  margin: 4px !important;
+  color: white !important;
+}
 
-  &:hover {
-    transform: translateY(-1px) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
-  }
+.mat-mdc-chip .chip-text {
+  color: white !important;
+  font-weight: 500 !important;
+}
+
+.mat-mdc-chip:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 
 /* Material Icon customization */
